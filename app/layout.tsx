@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ConvexClientProvider } from "./providers/ConvexProvider";
+import ConvexClerkProvider from "@/providers/ConvexClerkProvider";
+
 
 export const metadata: Metadata = {
   title: "Next Podcast",
@@ -16,10 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ConvexClerkProvider>
     <html lang='en'>
       <body className={`antialiased`}>
-        <ConvexClientProvider>{children}</ConvexClientProvider>
+        {children}
       </body>
     </html>
+    </ConvexClerkProvider>
   );
 }
