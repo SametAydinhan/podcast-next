@@ -88,7 +88,7 @@ const CreatePodcast = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className='input-class focus-visible:ring-orange-1'
+                      className='input-class focus-visible:ring-offset-orange-1'
                       placeholder='NextJS Pro Podcast'
                       {...field}
                     />
@@ -113,7 +113,7 @@ const CreatePodcast = () => {
                     className='placeholder:text-gray-1'
                   />
                 </SelectTrigger>
-                <SelectContent className='text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-orange-1'>
+                <SelectContent className='text-16 border-none bg-black-1 font-bold text-white-1 focus:ring-offset-orange-1'>
                   {voiceCatagories.map((catagory) => (
                     <SelectItem
                       key={catagory}
@@ -143,7 +143,7 @@ const CreatePodcast = () => {
                   </FormLabel>
                   <FormControl>
                     <Textarea
-                      className='input-class focus-visible:ring-orange-1'
+                      className='input-class focus-visible:ring-offset-orange-1'
                       placeholder='Write a short podcast description'
                       {...field}
                     />
@@ -154,7 +154,15 @@ const CreatePodcast = () => {
             />
           </div>
           <div className='flex flex-col pt-10'>
-            <GeneratePodcast />
+            <GeneratePodcast
+              setAudioStorageId={setAudioStorageId}
+              setAudio={setAudioUrl}
+              voiceType={voiceType}
+              audio={audioUrl}
+              voicePrompt={voicePrompt}
+              setVoicePrompt={setVoicePrompt}
+              setAudioDuration={setAudioDuration}
+            />
 
             <GenerateThumbnail />
 
