@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ConvexClerkProvider from "@/providers/ConvexClerkProvider";
+import AudioProvider from "@/providers/AudioProvider";
 
 
 export const metadata: Metadata = {
@@ -18,11 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexClerkProvider>
-    <html lang='en'>
-      <body className={`antialiased`}>
-        {children}
-      </body>
-    </html>
+      <html lang='en'>
+        <AudioProvider>
+          <body className={`antialiased`}>{children}</body>
+        </AudioProvider>
+      </html>
     </ConvexClerkProvider>
   );
 }
