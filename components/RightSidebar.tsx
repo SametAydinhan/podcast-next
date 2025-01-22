@@ -10,6 +10,8 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
 import LoaderSpinner from "./LoaderSpinner";
+import { useAudio } from "@/providers/AudioProvider";
+import { cn } from "@/lib/utils";
 
 function RightSidebar() {
   const { user } = useUser();
@@ -18,8 +20,11 @@ function RightSidebar() {
 
    if (!topPodcasters) return <LoaderSpinner />;
 
-  return (
-    <section className='right_sidebar text-white-1'>
+  const { audio } = useAudio();
+   return (
+     <section className={cn('right_sidebar h-[calc(100vh)]', {
+       'h-[calc(100vh-140px)]': audio?.audioUrl
+     })}>
       <SignedIn>
         <Link href={`/profile/${user?.id}`} className='flex gap-3 pb-12'>
           <UserButton />
@@ -61,7 +66,7 @@ function RightSidebar() {
                   <h2 className="text-14 font-semibold text-white-1">{podcaster.name}</h2>
                 </figure>
                 <div className="flex items-center">
-                  <p className="text-12 font-normal"> {podcaster.totalPodcasts} podcasts</p>
+                  <p className="text-white-1 text-12 font-normal"> {podcaster.totalPodcasts} podcasts</p>
                 </div>
               </div>
             ))}
